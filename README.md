@@ -33,10 +33,17 @@
     - Evaluate the performance of the predictive models.
 
 # Technologies 
-  List with used technologies, ex:
-  - Python
-  - Pandas
-  - MySQL
+  List with used technologies:
+  - Python: The core programming language used for all data analysis, manipulation, and visualization.
+  - Pandas: For data manipulation, cleaning, and analysis, especially with time series data.
+  - NumPy: For numerical computations and array operations.
+  - Matplotlib: For creating basic and custom visualizations, including line plots, scatter plots, and candlestick charts.
+  - Seaborn: For enhanced statistical visualizations, such as correlation heatmaps and distribution plots.
+  - Statsmodels: For time series analysis, including ARIMA modeling, and for statistical tests.
+  - Scikit-learn: For machine learning models, including linear regression and random forest regression.
+  - Plotly: For interactive visualizations, particularly candlestick charts and volume profiles.
+  - Pmdarima: For automatic ARIMA parameter selection.
+  - Scipy.stats: For statistical functions and hypothesis testing.
 
 # Project Description
   Paragraph with a description of the dataset, sources, characteristics ,etc.

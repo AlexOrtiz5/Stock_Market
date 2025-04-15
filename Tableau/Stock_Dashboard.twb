@@ -156,7 +156,7 @@
         </metadata-records>
       </connection>
       <aliases enabled='yes' />
-      <column datatype='integer' name='[Close (bin)]' role='dimension' type='quantitative'>
+      <column aggregation='None' datatype='integer' name='[Close (bin)]' role='dimension' type='quantitative'>
         <calculation class='bin' decimals='1' formula='[Close]' peg='0' size='12.7' />
       </column>
       <column datatype='real' name='[Close]' role='measure' type='quantitative' />
@@ -375,26 +375,6 @@
       </table>
       <simple-id uuid='{C5951315-69DC-4133-B249-F275D60DDEF3}' />
     </worksheet>
-    <worksheet name='Sheet 6'>
-      <table>
-        <view>
-          <datasources />
-          <aggregation value='true' />
-        </view>
-        <style />
-        <panes>
-          <pane selection-relaxation-option='selection-relaxation-allow'>
-            <view>
-              <breakdown value='auto' />
-            </view>
-            <mark class='Automatic' />
-          </pane>
-        </panes>
-        <rows />
-        <cols />
-      </table>
-      <simple-id uuid='{5F194AEA-2ACA-4754-B414-EC7E31E7AD2C}' />
-    </worksheet>
     <worksheet name='Technical Indicator'>
       <table>
         <view>
@@ -491,14 +471,50 @@
       </table>
       <simple-id uuid='{B0BB413B-7B51-4EC6-B4CA-B494462278AB}' />
     </worksheet>
-    <worksheet name='Volatility and Returns'>
+    <worksheet name='Volatility and Returns: Box Plots of Daily Returns'>
       <table>
         <view>
           <datasources>
             <datasource caption='clean_stocks' name='federated.190qqwd08xsp0a13lf5we19bijru' />
           </datasources>
           <datasource-dependencies datasource='federated.190qqwd08xsp0a13lf5we19bijru'>
-            <column datatype='integer' name='[Close (bin)]' role='dimension' type='quantitative'>
+            <column aggregation='None' datatype='integer' name='[Close (bin)]' role='dimension' type='quantitative'>
+              <calculation class='bin' decimals='1' formula='[Close]' peg='0' size='12.7' />
+            </column>
+            <column datatype='real' name='[Close]' role='measure' type='quantitative' />
+            <column-instance column='[Close]' derivation='Count' name='[cnt:Close:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Close (bin)]' derivation='None' name='[none:Close (bin):qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <reference-line axis-column='[federated.190qqwd08xsp0a13lf5we19bijru].[cnt:Close:qk]' boxplot-mark-exclusion='false' boxplot-whisker-type='standard' enable-instant-analytics='true' formula='average' id='refline0' label-type='automatic' probability='95' scope='per-cell' symmetric='false' value-column='[federated.190qqwd08xsp0a13lf5we19bijru].[cnt:Close:qk]' z-order='1' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.25' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.190qqwd08xsp0a13lf5we19bijru].[cnt:Close:qk]</rows>
+        <cols>[federated.190qqwd08xsp0a13lf5we19bijru].[none:Close (bin):qk]</cols>
+      </table>
+      <simple-id uuid='{5F194AEA-2ACA-4754-B414-EC7E31E7AD2C}' />
+    </worksheet>
+    <worksheet name='Volatility and Returns: Histogram of Daily Returns'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='clean_stocks' name='federated.190qqwd08xsp0a13lf5we19bijru' />
+          </datasources>
+          <datasource-dependencies datasource='federated.190qqwd08xsp0a13lf5we19bijru'>
+            <column aggregation='None' datatype='integer' name='[Close (bin)]' role='dimension' type='quantitative'>
               <calculation class='bin' decimals='1' formula='[Close]' peg='0' size='12.7' />
             </column>
             <column datatype='real' name='[Close]' role='measure' type='quantitative' />
@@ -524,6 +540,34 @@
         </show-full-range>
       </table>
       <simple-id uuid='{0E5D25E6-B2BA-4479-B8F6-C8D1A105B077}' />
+    </worksheet>
+    <worksheet name='Volatility and Returns: Line Chart of Rolling Volatility'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='clean_stocks' name='federated.190qqwd08xsp0a13lf5we19bijru' />
+          </datasources>
+          <datasource-dependencies datasource='federated.190qqwd08xsp0a13lf5we19bijru'>
+            <column datatype='real' name='[Close]' role='measure' type='quantitative' />
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal' />
+            <column-instance column='[Close]' derivation='Sum' name='[sum:Close:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Date]' derivation='Year-Trunc' name='[tyr:Date:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.190qqwd08xsp0a13lf5we19bijru].[sum:Close:qk]</rows>
+        <cols>[federated.190qqwd08xsp0a13lf5we19bijru].[tyr:Date:qk]</cols>
+      </table>
+      <simple-id uuid='{32A9AC63-B905-49CF-9F3E-76160232F982}' />
     </worksheet>
   </worksheets>
   <windows saved-dpi-scale-factor='1.25' source-height='37'>
@@ -555,7 +599,7 @@
       </cards>
       <simple-id uuid='{F76E0D01-9728-4C91-92F7-0BD4218CF181}' />
     </window>
-    <window class='worksheet' maximized='true' name='Volatility and Returns'>
+    <window class='worksheet' name='Volatility and Returns: Histogram of Daily Returns'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -577,6 +621,68 @@
         </edge>
       </cards>
       <simple-id uuid='{7FECE935-D5E6-4243-875C-440C026A192A}' />
+    </window>
+    <window class='worksheet' name='Volatility and Returns: Box Plots of Daily Returns'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.190qqwd08xsp0a13lf5we19bijru].[none:Close (bin):qk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{B2E57C75-0410-40F9-A8AF-D2F493528918}' />
+    </window>
+    <window class='worksheet' maximized='true' name='Volatility and Returns: Line Chart of Rolling Volatility'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.190qqwd08xsp0a13lf5we19bijru].[none:Close (bin):qk]</field>
+            <field>[federated.190qqwd08xsp0a13lf5we19bijru].[none:Close:qk]</field>
+            <field>[federated.190qqwd08xsp0a13lf5we19bijru].[yr:Date:ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{54FB6E67-89F4-4212-8628-D71AC656CBF1}' />
     </window>
     <window class='worksheet' name='Price and Volume Relationships'>
       <cards>
@@ -647,29 +753,6 @@
       </cards>
       <simple-id uuid='{06D341C7-DC87-4B35-B6AA-7239171E0494}' />
     </window>
-    <window class='worksheet' name='Sheet 6'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='title' />
-          </strip>
-        </edge>
-      </cards>
-      <simple-id uuid='{B2E57C75-0410-40F9-A8AF-D2F493528918}' />
-    </window>
   </windows>
   <thumbnails>
     <thumbnail height='192' name='Comparative Analysis' width='192'>
@@ -687,20 +770,6 @@
       fBUOM1sAAAAASUVORK5CYII=
     </thumbnail>
     <thumbnail height='192' name='Price and Volume Relationships' width='192'>
-      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAABJ0AAASdAHeZh94
-      AAACFUlEQVR4nO3TMQEAIAzAMMC/5yFjRxMFfXpnZg5Eve0A2GQA0gxAmgFIMwBpBiDNAKQZ
-      gDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFI
-      MwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQD
-      kGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBp
-      BiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA
-      0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDN
-      AKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxA
-      mgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZ
-      gDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFI
-      MwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKR9Y+0F
-      fBUOM1sAAAAASUVORK5CYII=
-    </thumbnail>
-    <thumbnail height='192' name='Sheet 6' width='192'>
       iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAABJ0AAASdAHeZh94
       AAACFUlEQVR4nO3TMQEAIAzAMMC/5yFjRxMFfXpnZg5Eve0A2GQA0gxAmgFIMwBpBiDNAKQZ
       gDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFI
@@ -852,7 +921,90 @@
       lev3MVQnZy5eIDbXh7KrjYL4GPcW7Jw+XPuFdaZv/4w/vn4bhwrVRy7yh997Y8fj/x/DyHbb
       xhzxQQAAAABJRU5ErkJggg==
     </thumbnail>
-    <thumbnail height='192' name='Volatility and Returns' width='192'>
+    <thumbnail height='192' name='Volatility and Returns: Box Plots of Daily Returns' width='192'>
+      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
+      vQZwf7kAAAAASUVORK5CYII=
+    </thumbnail>
+    <thumbnail height='192' name='Volatility and Returns: Histogram of Daily Returns' width='192'>
       iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAABJ0AAASdAHeZh94
       AAAQpUlEQVR4nO3dSXMb6XkH8H93Y18IAtz3ISWuI2nEGY+nxokzrngqFTs5pbJVuXLI2R8g
       h1zmOySVWw455JClnBxySOzEcWZSSdnRlDkiRRAkwZ0EQIAASOzd/fabA0WOLHVD7CYEgXif
@@ -934,6 +1086,57 @@
       GJ++/+oAzrG7nbwcc16GpjEsLi4i5NKR2Eji3sKr68N1DRrn2NvZwr3pKewkNzE8Pg2XVsJu
       +gLz88OvjsHlmxddBBOh0dehidAoAERoFAAiNAoAERoFgAiNAkCERgEgQqMAEKFRAIjQ/h/N
       uAcrmxnTHAAAAABJRU5ErkJggg==
+    </thumbnail>
+    <thumbnail height='192' name='Volatility and Returns: Line Chart of Rolling Volatility' width='192'>
+      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
     </thumbnail>
   </thumbnails>
 </workbook>

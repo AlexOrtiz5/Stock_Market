@@ -4,8 +4,10 @@
 # Project objective
   This project undertakes a comprehensive financial market analysis utilizing stock market data obtained from Kaggle (https://www.kaggle.com/datasets/amirmotefaker/stock-market-analysis-data). Our primary objective is to extract meaningful insights from historical stock prices by identifying trends, exploring market volatility, and developing predictive models for future price movements through time series analysis techniques. To achieve this, we have performed exploratory data analysis, including visualizing stock price trends, moving averages, and daily returns. Feature engineering was conducted to create relevant indicators such as price ratios, volatility measures, lagged variables, RSI, and MACD. We have also delved into statistical analysis, examining the distribution of returns and conducting hypothesis tests. Furthermore, the project has involved advanced time series analysis using ARIMA models for forecasting and exploring concepts of stationarity and seasonality. Risk management techniques, including the calculation of Value at Risk (VaR), Conditional Value at Risk (CVaR), and drawdown analysis, have been applied. The findings of these analyses are being visualized using Python libraries like Matplotlib, Seaborn, and Plotly, with the intention of creating informative dashboards in Tableau for clear and actionable insights. While the initial objective included analyzing the impact of market news, the current phase of the project has focused on the quantitative analysis of stock price and volume data. The deliverables will encompass these robust data visualizations, predictive models, risk assessments, and a comprehensive report demonstrating proficiency in time series analysis, financial analysis, data visualization, and predictive modeling based on the stock market data itself.
 
+  Tableau Dashboard (https://public.tableau.com/views/Stock_Dashboard_17460256683730/StockPerformanceOverview?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+
 # Methods
-  List with methods (to be done in the project):
+  List with methods:
   - Data Acquisition and Preprocessing:
     - Download and import the stock market dataset from Kaggle.
     - Clean the data by handling missing values and correcting data types.
@@ -21,16 +23,12 @@
     - Calculate technical indicators (RSI, MACD, etc.) to identify trading signals.
     - Create price ratios and volatility measures to enrich the dataset.
   - Time Series Analysis and Modeling:
-    - Perform autocorrelation analysis to understand price dependencies.
     - Develop and evaluate ARIMA models for stock price forecasting.
-    - Implement Prophet models to capture seasonality and trends.
     - Implement Linear Regression Models.
     - Implement Random Forest Models.
-    - Implement LSTM models.
   - Visualization and Reporting:
-    - Create clear and informative visualizations to present findings.
-    - Generate a comprehensive report summarizing the analysis and results.
-    - Evaluate the performance of the predictive models.
+    - Create clear and informative visualizations to present findings (using Matplotlib, Seaborn, Plotly).
+    - Evaluate the performance of the predictive models (MSE).
 
 # Technologies 
   List with used technologies:
